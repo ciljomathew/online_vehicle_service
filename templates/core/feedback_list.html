@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+<div class= "feedback">
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Feedback List</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered align-middle">
+          <thead>
+            <tr class="text-center fw-bold">
+              <th >#</th>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Last Updated</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for feedback in feedbacks %}
+
+            <tr>
+              <td class="text-center fw-bold">{{forloop.counter}}</td>
+              <td>{{feedback.name}}</td>
+              <td>{{feedback.subject}}</td>
+              <td>{{feedback.updated_on|date}}</td>
+              <td>{{feedback.message}}</td>
+            </tr>
+
+            {% empty %}
+            <tr>
+              <td colspan="4">No feedbacks!</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+{% endblock content %}

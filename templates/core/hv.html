@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+<div class="container hv py-5">
+    <div class="row">
+        <div class="col-lg-6">
+          <h1>HEAVY VEHICLES</h1>
+          <p>
+            MotoHub is an exclusive hub for all kind of vehicle services.We provide quick services for your vehicles.
+            your experience matters to us.Please comment down your experince with us.  
+                Thankyou 
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <form action="" method="post">
+                {% csrf_token %}
+                <table>
+                    <tbody>
+                        {{form.as_p}}
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+</section>
+
+{% endblock content %}

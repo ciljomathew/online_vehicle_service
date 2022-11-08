@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid bg-light vh-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-lg-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">Logged out successfully!</h5>
+          <p class="card-text">
+            If you want to login again
+            <a class="link-primary" href="{% url 'user:user_login' %}">click here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
