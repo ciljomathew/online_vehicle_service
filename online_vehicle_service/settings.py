@@ -138,3 +138,10 @@ AUTH_USER_MODEL = "user.CustomUser"
 
 # Authentication default values
 LOGIN_URL = "user:user_login"
+
+
+
+# Razorpay
+RAZORPAY_KEY_ID = "rzp_test_dlkdtnJL7F2D4C"
+RAZORPAY_KEY_SECRET = "D1wF3qTQpMmtU1LpKIFMFezK"
+

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 from core.models import TimeStamp
 
@@ -51,12 +52,16 @@ class ProfileModel(TimeStamp, models.Model):
     first_name = models.CharField(max_length=24)
     last_name = models.CharField(max_length=24)
     gender = models.CharField(max_length=15, choices=GenderType.choices)
-    address = models.ManyToManyField(AddressModel)
-    phone = models.CharField(max_length=15)
+    address = models.ManyToManyField(AddressModel, blank=True)
+    phone = models.CharField(max_length=15,default=None)
     image = models.ImageField(
         upload_to="user/profile/image/",
         default="default/user.png",
     )
+    user = models.OneToOneField(USER, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
+    def get_absolute_url(self):
+        return reverse("user:profile_detail", kwargs={"pk":self.id})

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<section style="min-height: 100vh">
+  <div class="container-fluid bg-light login vh-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-lg-7 px-4">
+        <div class="px-4">
+          <div class="card bg-dark text-light">
+            <div class="card-body">
+              <p class="card-title text">
+                * Your Service Cost : {{service.cost}}
+              </p>
+              <br>
+              <div class="card-text">
+                <p class="card-title text">
+                  * Type Of Service : {{service.type}}
+                </p>
+                <br>
+                <p class="card-title text">
+                  * Your Vehicle : {{service.vehicle}}
+                </p>
+              </div>
+              <br>
+              <div>
+                <form
+                  action="{% url 'core:payment' service.id %}"
+                  method="post"
+                >
+                  {% csrf_token %} {{form.as_p}}
+                  <br>
+                  <button type="submit" class="btn btn-primary">Pay</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

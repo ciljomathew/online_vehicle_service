@@ -1,34 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="container py-5"  style="min-height:100vh">
-    <div class="card">
-        <div class="card-body">
-            <p>Delivery Expected on : ---------</p>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <p>Select Payment Method:</p>
-            <div class="card-text">
-                <p>---------</p>
-                <p>---------</p>
-                <p>---------</p>
+<section class="dlvry"  style="min-height:100vh">
+    <div class="container py-5 m-0" >
+        <div class="card bg-dark text-light">
+            <div class="card-body">
+                <p>Delivery Expected on : {{service.delivery_time}}</p>
             </div>
-        </div>
+        </div>      
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+</section>
 {% endblock content %}

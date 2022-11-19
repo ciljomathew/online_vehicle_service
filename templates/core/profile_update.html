@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="bg-dark text-light py-5" style="min-height:100vh">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center text-light">Profile Update</h2>
+        <hr />
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="text-light bg-dark card-body">
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <table>
+                <tbody>
+                  {{form.as_p}}
+                </tbody>
+              </table>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'includes/footer.html' %}
+{% endblock content %}

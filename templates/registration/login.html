@@ -2,13 +2,13 @@
 <div class="container-fluid bg-light login vh-100">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-lg-6">
-      <div class="card shadow">
+      <div class="card bg-dark text-light">
         <div class="card-body">
           <h1 class="card-title">Login</h1>
           <form action="" method="post">
             {% csrf_token %} {{form.as_p}}
             <div class="d-flex justify-content-between mb-3">
-              <a href="" class="link-primary">Forgot Password?</a>
+              <a href="{% url 'password_reset' %}" class="link-primary">Forgot Password?</a>
               <a href="{% url 'user:user_signup' %}" class="link-primary">Create Account?</a>
             </div>
             <button class="btn btn-primary">Login</button>

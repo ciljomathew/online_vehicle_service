@@ -68,3 +68,34 @@ class ServiceModel(TimeStamp, models.Model):
         if id is None:
             self.cost = self.type.cost
         return super().save(*args, **kwargs)
+
+    
+
+#payment
+class Payment(TimeStamp, models.Model):
+    class PaymentStatusChoices:
+        pending = "pending"
+        completed = "completed"
+        failed = "failed"
+
+    PAYMENT_STATUS_CHOICES = (
+        ("Pending", PaymentStatusChoices.pending),
+        ("Completed", PaymentStatusChoices.completed),
+        ("Failed", PaymentStatusChoices.failed),
+    )
+
+    id = models.CharField(primary_key=True, unique=True, max_length=120)
+    status = models.CharField(
+        max_length=16,
+        choices=PAYMENT_STATUS_CHOICES,
+        default=PaymentStatusChoices.pending,
+    )
+    mode = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.status}"
+
+
+
+
+

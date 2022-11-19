@@ -11,7 +11,25 @@
     </div>
     <div class="row">
       <div class="col">
-        <table class="table table-bordered align-middle">
+        {% for feedback in feedbacks %}
+        <div class="card fblist">
+          <div class="card-body">
+            <div class="card-title">
+              <p class="fb-color">Name : {{feedback.name}}</p>
+            </div>
+            <div class="card-text">
+              <p class="fb-color">Message : {{feedback.message}}</p>
+              <p class="fb-color">Updated Date : {{feedback.updated_on|date}}</p>
+            </div>
+          </div>
+          {% empty %}
+            <div>
+              <p class="fb-color">No feedbacks!</p>
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- <table class="table table-bordered align-middle">
           <thead>
             <tr class="text-center fw-bold">
               <th >#</th>
@@ -38,7 +56,7 @@
             </tr>
             {% endfor %}
           </tbody>
-        </table>
+        </table> -->
       </div>
     </div>
   </div>

@@ -1,32 +1,37 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <section>
-<div class="container car bg-dark py-5">
-    <div class="row">
-        <div class="col-lg-6">
+  <div class="container-fluid vh-100 bg-dark py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-7 px-4">
+        <div class="px-4">
+          <div>
+            <img src="{% static 'img/car_1.png' %}" alt="" class="img-fluid" />
+          </div>
           <h1 class="text-light">Welcome to MotoHub</h1>
           <p class="text-light">
-            MotoHub is an exclusive hub for all kind of vehicle services.We provide quick services for your vehicles.
-            your experience matters to us.Please comment down your experince with us.  
-                Thankyou 
+            MotoHub is an exclusive hub for all kind of vehicle services.We
+            provide quick services for your vehicles. your experience matters to
+            us.Please comment down your experince with us. Thankyou
           </p>
         </div>
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <form action="" method="post">
-                {% csrf_token %}
-                <table>
-                    <tbody>
-                        {{form.as_p}}
-                    </tbody>
-                </table>
-                <a href="{% url 'core:payment' %}"><button class="btn btn-primary" type="submit">Submit</button></a>
-              </form>
-            </div>
+      </div>
+      <div class="col-lg-5 px-4">
+        <div class="card text-light bg-dark">
+          <div class="card-body">
+            <h3 class="card-title mb-3">Book your service</h3>
+            <form action="" method="post">
+              {% csrf_token %}
+              <table>
+                <tbody>
+                  {{form.as_p}}
+                </tbody>
+              </table>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
           </div>
         </div>
       </div>
-</div>
+    </div>
+  </div>
 </section>
 {% endblock content %}

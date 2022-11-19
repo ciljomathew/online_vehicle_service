@@ -1,81 +1,55 @@
 <nav class="navbar navbar-expand-lg bg-color">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'core:home' %}">Home</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <a class="navbar-brand" href="{% url 'core:home' %}">MotoHub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav align-items-center me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Feedback</a
-          >
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Feedback</a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="{% url 'core:feedback_create' %}"
-                >Create Feedback</a
-              >
+              <a class="dropdown-item" href="{% url 'core:feedback_create' %}">Create Feedback</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'core:feedback_list' %}"
-                >View Feedbacks</a
-              >
+              <a class="dropdown-item" href="{% url 'core:feedback_list' %}">View Feedbacks</a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{% url 'core:book_service' %}"
-            >Book Service</a
-          >
+          <a class="nav-link active" aria-current="page" href="{% url 'core:book_service' %}">Book Service</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Account <i class="fa-solid fa-user-plus"></i> </a
-          >{% if user.is_authenticated %} {{user}} {% else %} {% endif %}
-          <ul class="dropdown-menu">
-            {% if user.is_authenticated %}
-            <li>
-              <a class="dropdown-item" href="{% url 'user:user_logout' %}"
-                >Logout</a
-              >
-            </li>
+        <li>
+
+          {% if user.is_authenticated %}
+            {% if user.profilemodel %}
+            <a href="{% url 'user:profile_detail' user.profilemodel.id  %}" class="text-dark ms-2 me-2"
+              style="text-decoration:None;">
+              {{user}}
+            </a>
             {% else %}
-            <li>
-              <a class="dropdown-item" href="{% url 'user:user_login' %}"
-                >Login</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="{% url 'user:user_signup' %}"
-                >Signup</a
-              >
-            </li>
+            <a href="{% url 'user:profile_create'  %}" class="text-dark ms-2 me-2" style="text-decoration:None;">
+              {{user}}
+            </a>
             {% endif %}
-          </ul>
+            {% else %}
+            <a href="{% url 'user:user_signup' %}" class="text-dark ms-2 me-2" style="text-decoration:None;">
+              Sign Up
+            </a>
+            {% endif %}
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item me-3">
+          <a href="{% url 'user:user_logout' %}" class="text-dark ms-2 me-2 " style="text-decoration:None;">Logout</a>
+          {% else %}
+          <a href="{% url 'user:user_login' %}" class="text-dark ms-2 me-2" style="text-decoration: None;">
+            Login
+          </a>
+          {% endif %}
         </li>
 
         <li class="nav-item">
@@ -83,12 +57,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

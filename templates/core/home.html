@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<body class=" bg-home">
-<section>
+
+<section class=" bg-home">
     <div class = "text-center bg-dark"><h2>MOTOHUB SERVICES</h2></div>
     <section class="hero-section">
         <div
@@ -41,21 +41,15 @@
 
       <div>
         <a href="{% url 'core:book_service' %}"><button class="btns text-center">Book Services</button></a>
-      </div><br>
-      <div>
-      
-
-        Visit Our Nearby Servicing Center..
-
-
       </div>
+      <br>
       <br>
       <div class="card-group">
         <div class="card">
           <img src="media\default\prj8.png" class="card-img-top" alt="...">
           <div class="card-body white bg-dark">
-            <h5 class="card-title">KOCHI</h5>
-            <p class="card-text">Address : Marine Drive , Kochi. <br> Contact No: 8523947614 <br> Mail id : Motohubkochi@gmail.com</p>
+            <h5 class="card-title">ENGINE TUNE-UP</h5>
+            <p class="card-text">Proper Engine Tuning</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
           </div>
@@ -63,8 +57,8 @@
         <div class="card">
           <img src="media\default\prj7.png" class="card-img-top" alt="...">
           <div class="card-body white bg-dark">
-            <h5 class="card-title">BANGLORE</h5>
-            <p class="card-text">Address : Indranagar Road , Banglore. <br> Contact No: 9453876211 <br> Mail id : Motohubbanglore@gamil.com </p>
+            <h5 class="card-title">FILTER CHANGE</h5>
+            <p class="card-text">Lub/Oil Filter chnage </p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
           </div>
@@ -72,8 +66,8 @@
         <div class="card">
           <img src="media\default\prj9.png" class="card-img-top" alt="...">
           <div class="card-body white bg-dark">
-            <h5 class="card-title">PUNE</h5>
-            <p class="card-text">Address : MG Road , Pune. <br> Contact No: 7569843215 <br> Mail id : Motohubpune@gmail.com</p>
+            <h5 class="card-title">WHEEL ALIGNMENT</h5>
+            <p class="card-text">Proper Wheel alignment</p>
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
           </div>
@@ -89,8 +83,8 @@
   <div class="card">
     <img src="media\default\prj10.png" class="card-img-top" alt="..." style="height:250px">
     <div class="card-body white bg-dark">
-      <h5 class="card-title">Hyderabad</h5>
-      <p class="card-text">Address : Port Road , Hyderabad. <br> Contact No: 8371594882 <br> Mail id : Motohubkochi@gmail.com</p>
+      <h5 class="card-title">WATER SERVICE</h5>
+      <p class="card-text">Experience the best water service</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
     </div>
@@ -98,8 +92,8 @@
   <div class="card">
     <img src="media\default\prj11.png" class="card-img-top" alt="..." style="height:250px">
     <div class="card-body white bg-dark">
-      <h5 class="card-title">Chennai</h5>
-      <p class="card-text">Address : Marina Beach , Chennai. <br> Contact No: 7539514862 <br> Mail id : Motohubbanglore@gamil.com </p>
+      <h5 class="card-title">NEW TIRES</h5>
+      <p class="card-text">New Tires Available</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
     </div>
@@ -107,8 +101,8 @@
   <div class="card">
     <img src="media\default\prj12.png" class="card-img-top" alt="..." style="height:250px">
     <div class="card-body white bg-dark">
-      <h5 class="card-title">Delhi</h5>
-      <p class="card-text">Address : Chandni Chowk , Delhi. <br> Contact No: 9946322156 <br> Mail id : Motohubpune@gmail.com</p>
+      <h5 class="card-title">BATTERY REPLACEMENT</h5>
+      <p class="card-text">Full Battery Replacement</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       <a href="{% url 'core:book_service' %}"><button type="button" class="btn btn-success">Book Now</button></a>
     </div>
@@ -122,5 +116,5 @@
 <br>
 
 </section>
-</body>
+
 {% endblock content %}

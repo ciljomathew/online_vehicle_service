@@ -163,3 +163,19 @@
 .white{
     color: aliceblue;
 }
+
+
+.dlvry{
+    background-image: url(prj30.png);
+    background-size: cover;
+}
+
+
+.fblist{
+    background-image: url(fbl2.png);
+    background-size: cover;
+}
+
+.fb-color{
+    color: black;
+}
