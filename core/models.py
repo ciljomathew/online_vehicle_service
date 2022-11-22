@@ -83,17 +83,19 @@ class Payment(TimeStamp, models.Model):
         ("Completed", PaymentStatusChoices.completed),
         ("Failed", PaymentStatusChoices.failed),
     )
-
-    id = models.CharField(primary_key=True, unique=True, max_length=120)
     status = models.CharField(
         max_length=16,
         choices=PAYMENT_STATUS_CHOICES,
         default=PaymentStatusChoices.pending,
     )
     mode = models.CharField(max_length=50, null=True, blank=True)
+    razorpay_order_id = models.CharField(max_length=256)
+    razorpay_payment_id = models.CharField(max_length=256)
+    razorpay_amount = models.FloatField(),
+    razorpay_currency =  models.CharField(max_length=16)
 
     def __str__(self):
-        return f"{self.id} - {self.status}"
+        return f"{self.razorpay_order_id} - ({self.status})"
 
 
 

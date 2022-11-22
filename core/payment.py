@@ -15,7 +15,7 @@ def create_order(client, amount, callback_url, receipt=None, currency="INR"):
         "amount": amount,
         "currency": currency,
         "receipt": receipt,
-        "payment_capture": 0,
+        "payment_capture": "1",
     }
     order = client.order.create(data=data)
     order_id = order.get("id", None)

@@ -9,26 +9,23 @@
               <p class="card-title text">
                 * Your Service Cost : {{service.cost}}
               </p>
-              <br>
+              <br />
               <div class="card-text">
                 <p class="card-title text">
                   * Type Of Service : {{service.type}}
                 </p>
-                <br>
+                <br />
                 <p class="card-title text">
                   * Your Vehicle : {{service.vehicle}}
                 </p>
               </div>
-              <br>
+              <br />
               <div>
-                <form
-                  action="{% url 'core:payment' service.id %}"
-                  method="post"
+                <a
+                  href="{% url 'core:payment' service.id %}"
+                  class="btn btn-primary"
+                  >Pay</a
                 >
-                  {% csrf_token %} {{form.as_p}}
-                  <br>
-                  <button type="submit" class="btn btn-primary">Pay</button>
-                </form>
               </div>
             </div>
           </div>

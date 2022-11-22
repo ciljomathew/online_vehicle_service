@@ -12,10 +12,10 @@ urlpatterns= [
     path("service/",views.BookServiceView.as_view(),name="book_service"),
     # payment
     path("service/<int:pk>/checkout/",views.CheckoutView.as_view(),name="checkout"),
-    # path("service/<int:pk>/payment/",views.PaymentView.as_view(),name="payment"),
-    path("payment/",views.payment,name="payment"),
+    path("service/<int:pk>/payment/",views.PaymentView.as_view(),name="payment"),
+    path("service/<int:pk>/payment/completed/",views.PaymentCompletedView.as_view(),name="payment_completed"),
     # Payment
-    path("payment/", views.PaymentListView.as_view(), name="payment_list"),
+    path("payment/list/", views.PaymentListView.as_view(), name="payment_list"),
 
 
 ]
