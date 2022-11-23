@@ -213,13 +213,19 @@ class PaymentView(LoginRequiredMixin, views.View):
         except Exception as e:
             print("#DEBUG: we don't find the required parameters in POST data", e)
             # if we don't find the required parameters in POST data
-            return redirect(reverse_lazy("core:payment", kwargs={"pk":self.kwargs.get("pk")}))
+            return redirect(reverse_lazy("core:payment_completed", kwargs={"pk":self.kwargs.get("pk")}))
 
         # Payment List view
 
 
 class PaymentCompletedView(views.TemplateView):
     template_name = "core/payment_completed.html"
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        pk = self.kwargs.get("pk")
+        service = core_models.ServiceModel.objects.get(id=pk)
+        context["service"] = service
+        return context
 
 
 class PaymentListView(LoginRequiredMixin, views.ListView):
@@ -232,3 +238,13 @@ class PaymentListView(LoginRequiredMixin, views.ListView):
         qs = super().get_queryset()
         qs = qs.filter(order__cart__user=user)
         return qs
+
+
+
+#history
+
+
+class BookServiceListView(LoginRequiredMixin, views.ListView):
+    template_name = "core/history.html"
+    model = core_models.ServiceModel
+    context_object_name = "services"

@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+    <div class="history bg-dark container">
+        <div class="row">
+           
+            {% for service in services %}
+            <div class="row row-cols-1 row-cols-md-1 g-4">
+                <div class="col">
+                  <div class="card bg-dark text-light text-center">
+                   
+                    <div class="card-body ">
+                        <p class="card-text">User :<strong>{{service.user}}</strong></p>
+                        <p class="card-text">Type : {{service.type}}</p>
+                        <p class="card-text">cost : {{service.cost}}</p>
+                        <p class="card-text">Date : {{service.date}}</p>
+                        <p class="card-text">Is Delivered : {{service.is_delivered}}</p>
+                       
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        {% empty %}
+        <div class="col">
+          <p>no services</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock content %}

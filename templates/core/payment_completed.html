@@ -1,13 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 <!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-  <div class="container">
+<div class= " final breadcrumb-section breadcrumb-bg">
+  <div class="min-vh-100 container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2 text-center">
         <div class="breadcrumb-text">
-          <h5 class="text-success">
+          <h5 class="bg-dark text-light text-success">
             Payment was successfull!
             <span>
+              <div class="bg-dark text-light card-body">
+                <p>Delivery Expected on : {{service.delivery_time}}</p>
+            </div>
+
               Back to
               <a href="{% url 'core:home' %}" class="link-primary">home</a>
             </span>

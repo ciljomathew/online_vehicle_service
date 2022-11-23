@@ -179,3 +179,21 @@
 .fb-color{
     color: black;
 }
+
+
+.final{
+    background-image: url(final2.png);
+    background-size: cover;
+}
+
+
+.history{
+    background-image: url(history.png);
+    background-size: cover;
+}
+
+
+.abus{
+    background-image: url(abus.png);
+    background-size: cover;
+}

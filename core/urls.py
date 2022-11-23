@@ -10,6 +10,8 @@ urlpatterns= [
     path("feedback/list/",views.feedback_listview, name="feedback_list"),
     # service booking
     path("service/",views.BookServiceView.as_view(),name="book_service"),
+    path("service/<int:pk>/delivery",views.ServiceView.as_view(),name="delivery"),
+    path("service/history/",views.BookServiceListView.as_view(),name="service_history"),
     # payment
     path("service/<int:pk>/checkout/",views.CheckoutView.as_view(),name="checkout"),
     path("service/<int:pk>/payment/",views.PaymentView.as_view(),name="payment"),
