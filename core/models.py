@@ -22,6 +22,8 @@ class FeedbackModel(TimeStamp, models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    
+#bookservice
 
 # Vehicle Model
 class VehicleModel(TimeStamp, models.Model):

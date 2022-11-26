@@ -35,8 +35,6 @@ def feedback_createview(request):
     elif request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
-            # fields = form.cleaned_data
-            # feedback = FeedbackModel.objects.create(**fields)
             form.save()
             return redirect(success_url)
         return render(request, template_name, {"form": form})
@@ -106,28 +104,6 @@ class ServiceView(views.ListView):
     context_object_name = "services"
 
 
-class PaymentView(views.View):
-    def get(self, request):
-
-        client = razorpay.Client(
-            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
-        )
-        payment = client.order.create(  # type: ignore
-            {"amount": 10000, "currency": "INR", "payment_capture": "1"}
-        )
-
-
-# def payment(request):
-#     client = razorpay.Client(
-#         auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
-#     )
-#     payment = client.order.create(  # type: ignore
-#         {"amount": 10000, "currency": "INR", "payment_capture": "1"}
-#     )
-#     print(payment)
-#     return HttpResponse(f"Success {payment}")
-
-
 # ================================================ #
 # Payment Realated views                           #
 # ================================================ #
@@ -143,7 +119,7 @@ class PaymentView(LoginRequiredMixin, views.View):
         service = core_models.ServiceModel.objects.get(id=pk)
         client = self.RAZORPAY_CLIENT
         # params
-        amount = service.cost * 100
+        amount = service.cost
         currency = "INR"
         payment_capture = "1"
         callback_url = reverse_lazy("core:payment_completed", kwargs={"pk":kwargs.get("pk")})
@@ -171,7 +147,7 @@ class PaymentView(LoginRequiredMixin, views.View):
             }
             print("#DEBUG: Amount", type(amount), amount)
             try:
-                amount = int(float(amount))
+                amount = int(float(amount))/100
             except Exception as e:
                 print("#DEBUG: amount can be converted into integer", e)
                 amount = 5000

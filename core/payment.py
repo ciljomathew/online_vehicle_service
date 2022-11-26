@@ -12,7 +12,7 @@ def get_client():
 
 def create_order(client, amount, callback_url, receipt=None, currency="INR"):
     data = {
-        "amount": amount,
+        "amount": amount * 100,
         "currency": currency,
         "receipt": receipt,
         "payment_capture": "1",
@@ -24,7 +24,7 @@ def create_order(client, amount, callback_url, receipt=None, currency="INR"):
         context = {
             "razorpay_order_id": order_id,
             "razorpay_merchant_key": RAZORPAY_KEY_ID,
-            "razorpay_amount": amount,
+            "razorpay_amount": amount / 100,
             "razorpay_currency": currency,
             "razorpay_callback_url": callback_url,
         }
