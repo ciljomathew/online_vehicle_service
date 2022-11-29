@@ -191,9 +191,9 @@ class PaymentView(LoginRequiredMixin, views.View):
             # if we don't find the required parameters in POST data
             return redirect(reverse_lazy("core:payment_completed", kwargs={"pk":self.kwargs.get("pk")}))
 
-        # Payment List view
+        
 
-
+#payment completed
 class PaymentCompletedView(views.TemplateView):
     template_name = "core/payment_completed.html"
     def get_context_data(self, **kwargs):
@@ -203,7 +203,8 @@ class PaymentCompletedView(views.TemplateView):
         context["service"] = service
         return context
 
-
+    
+#payment List view
 class PaymentListView(LoginRequiredMixin, views.ListView):
     template_name = "core/payment_list.html"
     model = core_models.Payment
@@ -218,8 +219,6 @@ class PaymentListView(LoginRequiredMixin, views.ListView):
 
 
 #history
-
-
 class BookServiceListView(LoginRequiredMixin, views.ListView):
     template_name = "core/history.html"
     model = core_models.ServiceModel

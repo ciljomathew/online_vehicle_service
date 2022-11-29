@@ -21,8 +21,6 @@ class AboutTests(TestCase):
 
 
 # feedback
-
-
 class FeedbackTests(TestCase):
     def create_feedback(
         self,
@@ -102,7 +100,7 @@ class FeedbackTests(TestCase):
         feedback_object = feedback_object.delete()
         self.assertTrue(feedback_object[0] == f_id)
 
-    # Form
+    # form
     def test_feedback_create_form_valid(self):
         data = {
             "name": "Ciljo",
@@ -294,7 +292,6 @@ class ServiceModelTests(TestCase):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
 
-
     # model
     def test_service_model_object_create(self):
         service_object = self.create_servicemodel()
@@ -323,7 +320,7 @@ class ServiceModelTests(TestCase):
         service_object = service_object.delete()
         self.assertTrue(service_object[0] == f_id)
 
-    # Form
+    # form
     def test_service_create_form_valid(self):
         service = self.create_servicetypemodel()
         vehicle = self.create_vehiclemodel()
@@ -348,19 +345,15 @@ class ServiceModelTests(TestCase):
         self.assertFalse(form.is_valid())
 
 
-
-
-#checkout
-
+# checkout
 class CheckoutTests(TestCase):
     def test_checkout_view_status_code(self):
-        url = reverse("core:checkout", kwargs={"pk":0})
+        url = reverse("core:checkout", kwargs={"pk": 0})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
 
-#history
-
+# history
 class BookServiceListTests(TestCase):
     def test_bookservicelist_view_status_code(self):
         url = reverse("core:service_history")
@@ -368,13 +361,67 @@ class BookServiceListTests(TestCase):
         self.assertEquals(response.status_code, 302)
 
 
-
-#payment completed
-        
-
+# paymentcompleted
 class PaymentCompletedTests(TestCase):
-    def test_payment_completed_view_status_code(self):
-        url = reverse("core:payment_completed", kwargs={"pk":0})
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 404)
+    def create_vehiclemodel(
+        self,
+        name="car",
+        model="car",
+        type="cr",
+    ):
+        vehicle_object = core_models.VehicleModel.objects.create(
+            name=name,
+            model=model,
+            type=type,
+        )
 
+        return vehicle_object
+
+    def create_servicetypemodel(
+        self,
+        name="Change Engine Oil",
+        cost=100.0,
+    ):
+        servicetype_object = core_models.ServiceTypeModel.objects.create(
+            name=name,
+            cost=cost,
+        )
+
+        return servicetype_object
+
+    def get_user(self):
+        user, created = get_user_model().objects.get_or_create(
+            username="user_1", password="p@55w0rd", email="user_1@email.com"
+        )
+        return user
+
+    def create_servicemodel(
+        self,
+        user="ciljo",
+        type="painting",
+        vehicle="car",
+        cost="amount",
+        date="date",
+        delivery_time="time",
+        is_delivered="delivered",
+    ):
+        user = self.get_user()
+        service_type = self.create_servicetypemodel()
+        vehicle = self.create_vehiclemodel()
+        service_object = core_models.ServiceModel.objects.create(
+            user=user,
+            type=service_type,
+            vehicle=vehicle,
+            cost=100.0,
+            date=now(),
+            delivery_time=now(),
+            is_delivered=False,
+        )
+
+        return service_object
+
+    def test_payment_view_status_code(self):
+        service=self.create_servicemodel()
+        url = reverse("core:payment_completed", kwargs={"pk": service.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
