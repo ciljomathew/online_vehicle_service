@@ -425,3 +425,6 @@ class PaymentCompletedTests(TestCase):
         url = reverse("core:payment_completed", kwargs={"pk": service.id})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+#payment

@@ -122,7 +122,9 @@ class PaymentView(LoginRequiredMixin, views.View):
         amount = service.cost
         currency = "INR"
         payment_capture = "1"
-        callback_url = reverse_lazy("core:payment_completed", kwargs={"pk":kwargs.get("pk")})
+        callback_url = reverse_lazy(
+            "core:payment_completed", kwargs={"pk": kwargs.get("pk")}
+        )
 
         order = payment.create_order(
             client, amount, callback_url, receipt=None, currency=currency
@@ -147,7 +149,7 @@ class PaymentView(LoginRequiredMixin, views.View):
             }
             print("#DEBUG: Amount", type(amount), amount)
             try:
-                amount = int(float(amount))/100
+                amount = int(float(amount)) / 100
             except Exception as e:
                 print("#DEBUG: amount can be converted into integer", e)
                 amount = 5000
@@ -155,7 +157,7 @@ class PaymentView(LoginRequiredMixin, views.View):
 
             # verify the payment signature.
             result = self.RAZORPAY_CLIENT.utility.verify_payment_signature(params_dict)
-            print("#DEBUG: verifying the payment signature... Completed.") 
+            print("#DEBUG: verifying the payment signature... Completed.")
 
             if result is not None:
 
@@ -174,12 +176,11 @@ class PaymentView(LoginRequiredMixin, views.View):
                     )
                     print("#DEBUG: Payment model created...")
 
-
                     # render success page on successful caputre of payment
                     return render(request, "core/paymentsuccess.html")
                 except Exception as e:
                     print("#DEBUG: there is an error while capturing payment...", e)
-                    
+
                     # if there is an error while capturing payment.
                     return render(request, "core/paymentfail.html")
             else:
@@ -189,22 +190,26 @@ class PaymentView(LoginRequiredMixin, views.View):
         except Exception as e:
             print("#DEBUG: we don't find the required parameters in POST data", e)
             # if we don't find the required parameters in POST data
-            return redirect(reverse_lazy("core:payment_completed", kwargs={"pk":self.kwargs.get("pk")}))
+            return redirect(
+                reverse_lazy(
+                    "core:payment_completed", kwargs={"pk": self.kwargs.get("pk")}
+                )
+            )
 
-        
 
-#payment completed
+# payment completed
 class PaymentCompletedView(views.TemplateView):
     template_name = "core/payment_completed.html"
+
     def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         pk = self.kwargs.get("pk")
         service = core_models.ServiceModel.objects.get(id=pk)
         context["service"] = service
         return context
 
-    
-#payment List view
+
+# payment List view
 class PaymentListView(LoginRequiredMixin, views.ListView):
     template_name = "core/payment_list.html"
     model = core_models.Payment
@@ -217,8 +222,7 @@ class PaymentListView(LoginRequiredMixin, views.ListView):
         return qs
 
 
-
-#history
+# history
 class BookServiceListView(LoginRequiredMixin, views.ListView):
     template_name = "core/history.html"
     model = core_models.ServiceModel
